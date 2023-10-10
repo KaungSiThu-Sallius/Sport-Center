@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "esModuleInterop": true,
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "noFallthroughCasesInSwitch": true,
+    "composite": true,
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "src",
+    "src/**/*.ts",
+    "src/**/*.d.ts" // Include the custom.d.ts file
+  ]
+}
