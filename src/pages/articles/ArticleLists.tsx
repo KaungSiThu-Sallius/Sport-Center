@@ -8,8 +8,9 @@ export default function ArticleLists() {
 
     let state: any = useArticlesState();
 
-    const { articles, isLoading, isError, errorMessage } = state
-    console.log(articles);
+    const { ArticleData, isLoading, isError, errorMessage } = state
+
+    console.log(ArticleData);
 
     if (isLoading) {
         return <span>Loading...</span>;
@@ -19,9 +20,17 @@ export default function ArticleLists() {
         return <span>{errorMessage}</span>;
     }
 
+
+
     return (
         <>
-            <h1>OK</h1>
+            {ArticleData.map((article: any) => (
+                <div key={article.id}>
+                    <h5 className="mb-2 text-xl font-medium tracking-tight text-gray-900 dark:text-white">
+                        {article.title}
+                    </h5>
+                </div>
+            ))}
         </>
     );
 }
