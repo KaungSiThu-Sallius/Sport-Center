@@ -10,8 +10,8 @@ export const initialState: ArticleListState = {
   errorMessage: "",
 };
 export const articleReducer: Reducer<ArticleListState, ArticleActions> = (
-  state = initialState,
-  action
+  state:ArticleListState = initialState,
+  action:ArticleActions
 ) => {
   switch (action.type) {
     case ArticleListAvailableAction.FETCH_ARTICLES_REQUEST:

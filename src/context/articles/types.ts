@@ -39,7 +39,7 @@ export type ArticleData = {
 
 
 export interface ArticleListState {
-  ArticleData: ArticleData;
+  ArticleData: ArticleData[];
   isLoading: boolean;
   isError: boolean;
   errorMessage: string;
