@@ -4,20 +4,20 @@ import initialData from "./initialData";
 import { ArticleData, ArticleListState,ArticleListAvailableAction,ArticleActions } from "./types";
 
 export const initialState: ArticleListState = {
-  ArticleData: initialData,
+  articlesDataList: initialData,
   isLoading: false,
   isError: false,
   errorMessage: "",
 };
-export const articleReducer: Reducer<ArticleListState, ArticleActions> = (
+export const reducer = (
   state:ArticleListState = initialState,
-  action:ArticleActions
+  action
 ) => {
   switch (action.type) {
     case ArticleListAvailableAction.FETCH_ARTICLES_REQUEST:
       return { ...state, isLoading: true };
     case ArticleListAvailableAction.FETCH_ARTICLES_SUCCESS:
-      return { ...state, isLoading: false, ArticleData: action.payload };
+      return { ...state, isLoading: false, articlesDataList: action.payload };
     case ArticleListAvailableAction.FETCH_ARTICLES_FAILURE:
       return {
         ...state,
@@ -27,7 +27,7 @@ export const articleReducer: Reducer<ArticleListState, ArticleActions> = (
       };
 
     case ArticleListAvailableAction.REORDER_ARTICLES:
-      return { ...state, isLoading: false, ArticleData: action.payload };
+      return { ...state, isLoading: false, articlesDataList: action.payload };
     default:
       return state;
   }

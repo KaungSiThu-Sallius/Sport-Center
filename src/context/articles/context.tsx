@@ -1,13 +1,15 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { articleReducer, initialState } from "./reducer";
+import { reducer, initialState } from "./reducer";
 import { ArticleListState, ArticlesDispatch } from "./types";
 
-const ArticlesStateContext = createContext<ArticleListState>(initialState);
+const ArticlesStateContext = createContext<ArticleListState | undefined>(undefined);
 const ArticlesDispatchContext = createContext<ArticlesDispatch>(() => { });
 export const ArticlesProvider: React.FC<React.PropsWithChildren> = ({
     children,
 }) => {
-    const [state, dispatch] = useReducer(articleReducer, initialState);
+
+    const [state, dispatch] = useReducer(reducer, initialState);
+
     return (
         <ArticlesStateContext.Provider value={state}>
             <ArticlesDispatchContext.Provider value={dispatch}>
