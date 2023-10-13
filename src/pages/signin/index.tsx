@@ -1,13 +1,17 @@
 import React from 'react';
-// Just import the file
-import SigninForm from "./SigninForm"
+import SigninForm from './SigninForm';
 
-const Signin = React.forwardRef((props, ref) => {
-    // And use it after the h1 tag
+type SigninProps = {
+    active: boolean;
+};
+
+const Signin = React.forwardRef<HTMLElement, SigninProps>((props, ref) => {
+    const { active } = props; // Destructure the 'active' prop
+
 
     return (
-        <SigninForm />
-
+        <SigninForm active={active} ref={ref} />
     );
-})
+});
+
 export default Signin;
