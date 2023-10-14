@@ -67,7 +67,10 @@ const Appbar = () => {
                                                 <Menu.Item >
                                                     {/* {token ? null : <Signin ref={signInRef} />} */}
                                                     {({ active }) => (
-                                                        token ? null : <Signin active={active} ref={signInRef} />
+                                                        <div>
+
+                                                            {token ? null : <Signin active={active} ref={signInRef} />}
+                                                        </div>
                                                     )}
                                                 </Menu.Item>
                                                 <Menu.Item>
