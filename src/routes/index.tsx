@@ -1,24 +1,29 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import React from "react";
-import Articles from '../pages/articles/index';
 // import ProtectedRoute from "./ProtectedRoute";
 import AccountLayout from "../layouts/account"
-// import ProtectedRoute from "./ProtectedRoute";
+import Signin from "../pages/signin";
+import Register from "../pages/register";
+import Logout from "../pages/logout";
+import Home from "../pages/home";
+
 
 const router = createBrowserRouter([
     // { path: "/", element: <Navigate to="/account/projects" replace /> },
-    // {
-    //     path: "/signin",
-    //     element: <Signin />
-    // },
-    // {
-    //     path: "/signup",
-    //     element: <Signup />
-    // },
-    // {
-    //     path: "/logout",
-    //     element: <Logout />
-    // },
+
+
+    {
+        path: "/signin",
+        element: <Signin />
+    },
+    {
+        path: "/register",
+        element: <Register />
+    },
+    {
+        path: "/logout",
+        element: <Logout />
+    },
     // Protected Routes
     {
         path: "/",
@@ -28,7 +33,7 @@ const router = createBrowserRouter([
             // </ProtectedRoute>
         ),
         children: [
-            { index: true, element: <Articles /> },
+            { index: true, element: <Home /> },
 
         ]
     },
