@@ -3,6 +3,7 @@ import React from "react";
 import Articles from '../pages/articles/index';
 // import ProtectedRoute from "./ProtectedRoute";
 import AccountLayout from "../layouts/account"
+// import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
     // { path: "/", element: <Navigate to="/account/projects" replace /> },
@@ -22,9 +23,9 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: (
-            //<ProtectedRoute>
+            // <ProtectedRoute>
             <AccountLayout />
-            //</ProtectedRoute>
+            // </ProtectedRoute>
         ),
         children: [
             { index: true, element: <Articles /> },

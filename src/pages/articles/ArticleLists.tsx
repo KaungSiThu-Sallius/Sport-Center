@@ -17,10 +17,7 @@ export default function ArticleLists() {
     if (isError) {
         return <span>{errorMessage}</span>;
     }
-
-
     console.log(articlesDataList);
-
     return (
         <>
             {articlesDataList.map((article: any) => (
