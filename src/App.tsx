@@ -3,14 +3,16 @@ import { ArticlesProvider } from "./context/articles/context";
 import router from "./routes"
 import { RouterProvider } from "react-router-dom";
 import './App.css'
+import { TokenProvider } from "./context/authToken";
 
 const App = () => {
 
   return (
     <ArticlesProvider>
-      <RouterProvider router={router} />
+      <TokenProvider>
+        <RouterProvider router={router} />
+      </TokenProvider>
     </ArticlesProvider>
-
   )
 }
 

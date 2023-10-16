@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Disclosure } from '@headlessui/react'
 
 import Logo from "../../assets/images/logo.png"
 // import { Link, useLocation } from "react-router-dom"
 import Signin from '../../pages/signin'
 import Register from '../../pages/register'
+import { TokenContext } from '../../context/authToken'
 
 
 // const userNavigation = [
@@ -17,9 +18,17 @@ import Register from '../../pages/register'
 
 const Appbar = () => {
     // const { pathname } = useLocation()
-    const [token, setToken] = React.useState(localStorage.getItem("authToken") ?? "");
-    React.useEffect(() => {
+
+    const { token, setToken } = useContext(TokenContext);
+    // const [token, setToken] = React.useState(localStorage.getItem("authToken") ?? "");
+
+    useEffect(() => {
     }, [token]);
+
+    setToken(localStorage.getItem("authToken") ?? "");
+
+
+    // const token = localStorage.getItem("authToken") ?? "";
 
 
     // const navigation = [
