@@ -31,7 +31,7 @@ export const fetchArticles = async (
       type: ArticleListAvailableAction.FETCH_ARTICLES_SUCCESS,
       payload: data,
     });
-    console.dir(data);
+
   } catch (error) {
     console.error("Operation failed:", error);
     dispatch({

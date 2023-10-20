@@ -6,6 +6,7 @@ import Signin from "../pages/signin";
 import Register from "../pages/register";
 import Logout from "../pages/logout";
 import Home from "../pages/home";
+import ArticleDetailsContainer from "../pages/articles/ArticleDetailsContainer";
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,31 @@ const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <Home /> },
+            {
+                path: "/",
+                element: <Home />,
+                children: [
+                    {
+                        path: "articles",
+                        children: [
+                            { index: true, element: <></> },
+                            {
+                                path: ":articleID",
+                                element: <ArticleDetailsContainer />
+                            },
+                            {
+                                path: ":sportID/:articleID",
+                                element: <ArticleDetailsContainer />
+                            }
+                        ]
+                    },
+                ]
+            },
+            {
+                path: ":sportID",
+                element: <Home />,
+
+            },
 
         ]
     },
