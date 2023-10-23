@@ -58,7 +58,8 @@ const RegisterForm: React.FC = () => {
         <>
             <div className="bg-gray-100 min-h-screen flex items-center justify-center">
                 <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-8 rounded-lg shadow-lg w-96">
-                    <h2 className="text-2xl font-semibold mb-4">Sign In</h2>
+                    <h2 className="text-2xl font-semibold mb-4">Register</h2>
+
 
                     <div className="mb-4">
                         <label htmlFor="name" className="block text-gray-600 text-sm font-medium mb-2">Name</label>
