@@ -5,10 +5,13 @@ This is a React-based Sports News and Articles Dashboard, serving as a current m
 
 <h3>Screensot of Sport Center</h3>
 
+<h5>Sign In Page</h5>
 <img width="1037" alt="Screenshot 2023-10-23 at 12 12 25 PM" src="https://github.com/KaungSiThu-Sallius/Sport-Center/assets/76986682/8ed3f2e6-391f-403e-901d-c02cb61a063a">
 
+<h5>Register Page</h5>
 <img width="1037" alt="Screenshot 2023-10-23 at 12 12 35 PM" src="https://github.com/KaungSiThu-Sallius/Sport-Center/assets/76986682/762e7eb8-d690-4db9-bba8-5694b7da3c4e">
 
+<h5>Dashboard Page</h5>
 <img width="1440" alt="Screenshot 2023-10-23 at 12 12 53 PM" src="https://github.com/KaungSiThu-Sallius/Sport-Center/assets/76986682/db3321d5-a2be-483b-b750-a34e978bdadc">
 
 <h3>Link to live website</h3>
