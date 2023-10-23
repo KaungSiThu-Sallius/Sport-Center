@@ -14,6 +14,10 @@ This is a React-based Sports News and Articles Dashboard, serving as a current m
 <h5>Dashboard Page</h5>
 <img width="1440" alt="Screenshot 2023-10-23 at 12 12 53 PM" src="https://github.com/KaungSiThu-Sallius/Sport-Center/assets/76986682/db3321d5-a2be-483b-b750-a34e978bdadc">
 
+<h5>Article Detail Modal</h5>
+<img width="970" alt="Screenshot 2023-10-23 at 12 17 55 PM" src="https://github.com/KaungSiThu-Sallius/Sport-Center/assets/76986682/10248b85-52cc-4724-9055-bea488939882">
+
+
 <h3>Link to live website</h3>
 
 <a href="https://sportcenterreact.netlify.app/">Sport Center</a>
