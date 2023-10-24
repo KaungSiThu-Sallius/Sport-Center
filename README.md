@@ -18,6 +18,8 @@ This is a React-based Sports News and Articles Dashboard, serving as a current m
 
 
 <h3>Link to live website</h3>
-
 <a href="https://sportcenterreact.netlify.app/">Sport Center</a>
+
+<h3>Link to explaination of webisite video</h3>
+<a href="https://www.loom.com/share/cad658dd4fdb468fac2b166297ac2477?sid=fa893521-88a3-49a3-ace9-a3b8380523bb">Watch Video</a>
 
