@@ -6,6 +6,7 @@ import Signin from "../pages/signin";
 import Register from "../pages/register";
 import Logout from "../pages/logout";
 import Home from "../pages/home";
+import UserPreferences from "../pages/userPreferences";
 import ArticleDetailsContainer from "../pages/articles/ArticleDetailsContainer";
 
 
@@ -53,12 +54,16 @@ const router = createBrowserRouter([
                             }
                         ]
                     },
+                    {
+                        path: "/userPreferences",
+                        element: <UserPreferences />
+                    }
+
                 ]
             },
             {
                 path: ":sportID",
                 element: <Home />,
-
             },
 
         ]
