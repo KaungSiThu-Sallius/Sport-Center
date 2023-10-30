@@ -3,22 +3,27 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSportsState } from '../../context/sports/context';
 import { useTeamsState } from '../../context/teams/context';
+import { useUserPreferencesState } from '../../context/userPreferences/context';
 import { API_ENDPOINT } from '../../config/constants';
 
 export default function PreferencesForm() {
     let [isOpen, setIsOpen] = useState(true);
     const token = localStorage.getItem("authToken") ?? "";
 
-
-
-    const [selectedSports, setSelectedSports] = useState([]);
-    const [selectedTeams, setSelectedTeams] = useState([]);
-
     let state: any = useSportsState();
     let teamState: any = useTeamsState();
+    // let userPreferenceState: any = useUserPreferencesState();
+
 
     const { sportsDataList, isLoading, isError, errorMessage } = state
     const { teamsDataList, isTeamLoading, isTeamError, errorTeamMessage } = teamState
+    // const { userpreferencesDataList, isUserPreferenceLoading, isUserPreferenceError, errorUserPreferenceMessage } = userPreferenceState
+
+    // const sportListsArr = userpreferencesDataList['sports'];
+    // const teamListsArr = userpreferencesDataList['teams'];
+
+    const [selectedSports, setSelectedSports] = useState([]);
+    const [selectedTeams, setSelectedTeams] = useState([]);
 
     useEffect(() => {
         // Include the Authorization header in the headers object
@@ -36,11 +41,11 @@ export default function PreferencesForm() {
                 const { sports, teams } = data.preferences;
                 setSelectedSports(sports);
                 setSelectedTeams(teams);
-                isLoading(false);
+
             })
             .catch((error) => {
                 console.error('Failed to fetch user preferences:', error);
-                isLoading(false);
+
             });
     }, []);
 
@@ -83,6 +88,8 @@ export default function PreferencesForm() {
     const handleSavePreferences = async () => {
         try {
 
+            console.log(selectedTeams)
+            console.log(selectedSports)
             console.log(token)
             const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
                 method: 'PATCH',
