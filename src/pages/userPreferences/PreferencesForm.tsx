@@ -88,15 +88,14 @@ export default function PreferencesForm() {
     const handleSavePreferences = async () => {
         try {
 
-            console.log(selectedTeams)
-            console.log(selectedSports)
-            console.log(token)
+            // console.log(selectedTeams)
+            // console.log(selectedSports)
+            // console.log(token)
             const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": `Bearer ${token}`
-                    // Add any headers required for authorization or authentication
                 },
                 body: JSON.stringify({
                     preferences: {

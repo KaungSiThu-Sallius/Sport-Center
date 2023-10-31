@@ -18,6 +18,13 @@ const ArticleDetails = () => {
 
     let [isOpen, setIsOpen] = useState(true);
     const { pathname } = useLocation();
+    const previousUrl = pathname;
+
+    const match = previousUrl.match(/\/(\d+)/);
+    const trimmedUrl = match ? `/${match[1]}` : "/";
+
+    console.log(trimmedUrl)
+
 
     let { articleID } = useParams();
     let navigate = useNavigate();
@@ -30,7 +37,7 @@ const ArticleDetails = () => {
     // const selectedArticle = articleState.articlesDataList[articleID ?? ""];
 
     // console.log(selectedArticle);
-    const previousUrl = pathname;
+
 
     if (!selectedArticle) {
         return <>No such Article!</>;
@@ -38,9 +45,8 @@ const ArticleDetails = () => {
 
     function closeModal() {
         setIsOpen(false);
-        navigate(previousUrl); // Navigate back to the previous URL
+        navigate(`/${selectedArticle.sport.id}`);
     }
-
 
 
 

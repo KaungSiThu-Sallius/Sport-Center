@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Articles from "./articles";
-import Matches from "./matches";
-import Sports from "./sports";
+import LiveGames from "./liveGames";
 import Teams from "./teams";
 import { Outlet } from "react-router-dom";
+import { useUserPreferencesDispatch } from "../context/userPreferences/context";
+import { fetchUserPreferences } from "../context/userPreferences/actions";
 
 const Home = () => {
+    const userPreferenceDispatch = useUserPreferencesDispatch();
+
+    useEffect(() => {
+        fetchUserPreferences(userPreferenceDispatch);
+    }, []);
+
 
     return (
         <>
-            <h1 className="text-2xl font-medium">Treading News</h1>
             <div className="flex">
+                <div className="">
+                    <LiveGames />
+                </div>
+
+            </div>
+            <div className="flex">
+
                 <div className="w-10/12 p-4">
+
                     <Articles />
                     <Outlet />
                 </div>
