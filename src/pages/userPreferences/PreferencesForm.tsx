@@ -3,8 +3,11 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSportsState } from '../../context/sports/context';
 import { useTeamsState } from '../../context/teams/context';
-import { useUserPreferencesState } from '../../context/userPreferences/context';
+
 import { API_ENDPOINT } from '../../config/constants';
+import { patchPreference } from '../../context/userPreferences/actions';
+import { useUserPreferencesDispatch } from '../../context/userPreferences/context';
+
 
 export default function PreferencesForm() {
     let [isOpen, setIsOpen] = useState(true);
@@ -12,6 +15,7 @@ export default function PreferencesForm() {
 
     let state: any = useSportsState();
     let teamState: any = useTeamsState();
+    const preferenceDispatch = useUserPreferencesDispatch();
     // let userPreferenceState: any = useUserPreferencesState();
 
 
@@ -91,26 +95,26 @@ export default function PreferencesForm() {
             // console.log(selectedTeams)
             // console.log(selectedSports)
             // console.log(token)
-            const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    preferences: {
-                        teams: selectedTeams, // Use the selectedTeams state
-                        sports: selectedSports, // Use the selectedSports state
-                    },
-                }),
-            });
+            // const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
+            //     method: 'PATCH',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         "Authorization": `Bearer ${token}`
+            //     },
+            //     body: JSON.stringify({
+            //         preferences: {
+            //             teams: selectedTeams, // Use the selectedTeams state
+            //             sports: selectedSports, // Use the selectedSports state
+            //         },
+            //     }),
+            // });
 
-            if (!response.ok) {
-                throw new Error('Failed to save preferences');
-            }
+            // if (!response.ok) {
+            //     throw new Error('Failed to save preferences');
+            // }
+            patchPreference(preferenceDispatch, selectedSports, selectedTeams);
 
             console.log('Preferences saved successfully');
-
             closeModal();
         } catch (error) {
             console.error('Error saving preferences:', error);

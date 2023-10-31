@@ -5,13 +5,16 @@ import Teams from "./teams";
 import { Outlet } from "react-router-dom";
 import { useUserPreferencesDispatch } from "../context/userPreferences/context";
 import { fetchUserPreferences } from "../context/userPreferences/actions";
+import { useUserPreferencesState } from "../context/userPreferences/context";
+
 
 const Home = () => {
     const userPreferenceDispatch = useUserPreferencesDispatch();
-
+    let userPreferenceState: any = useUserPreferencesState();
+    const { userpreferencesDataList, isUserPreferenceLoading, isUserPreferenceError, errorUserPreferenceMessage } = userPreferenceState
     useEffect(() => {
         fetchUserPreferences(userPreferenceDispatch);
-    }, []);
+    }, [userpreferencesDataList]);
 
 
     return (

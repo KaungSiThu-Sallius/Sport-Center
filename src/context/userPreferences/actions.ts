@@ -41,3 +41,42 @@ export const fetchUserPreferences = async (
   }
 };
 
+export const patchPreference = async (
+  dispatch: UserPreferencesDispatch,
+  sports: any,
+  teams: any
+) => {
+
+  const token = localStorage.getItem("authToken") ?? "";
+  try {
+    dispatch({ type: UserPreferenceListAvailableAction.PATCH_USERPREFERENCES_REQUEST });
+    const response = await fetch(
+      `${API_ENDPOINT}/user/preferences`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      body: JSON.stringify({
+                    preferences: {
+                        teams: teams, // Use the selectedTeams state
+                        sports: sports, // Use the selectedSports state
+                    },
+                }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to create task");
+    }
+    dispatch({ type: UserPreferenceListAvailableAction.PATCH_USERPREFERENCES_SUCCESS });
+  } catch (error) {
+    console.error("Operation failed:", error);
+    dispatch({
+      type: UserPreferenceListAvailableAction.PATCH_USERPREFERENCES_FAILURE,
+      payload: "Unable to create task",
+    });
+  }
+};
+
