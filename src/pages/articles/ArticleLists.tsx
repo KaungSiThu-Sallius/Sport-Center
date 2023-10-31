@@ -4,14 +4,16 @@ import { useArticlesState } from "../../context/articles/context";
 import React from "react";
 import { formatDate } from "../../config/dateFormat";
 import { Link } from "react-router-dom";
+import { useUserPreferencesState } from "../../context/userPreferences/context";
 
 export default function ArticleLists(props) {
     const sportID = props.sportID;
     let state: any = useArticlesState();
-
+    const token = localStorage.getItem("authToken") ?? "";
     const { articlesDataList, isLoading, isError, errorMessage } = state
 
-
+    const userPreferenceState: any = useUserPreferencesState();
+    const { userpreferencesDataList, isUserPreferenceLoading, isUserPreferenceError, errorUserPreferenceMessage } = userPreferenceState
     if (isLoading) {
         return <span>Loading...</span>;
     }
@@ -19,13 +21,28 @@ export default function ArticleLists(props) {
     if (isError) {
         return <span>{errorMessage}</span>;
     }
-    const filteredArticles = sportID
+    let filteredArticles = sportID
         ? articlesDataList.filter((article) => {
             return article.sport.id == sportID;
         })
         : articlesDataList;
 
 
+
+    if (token) {
+        filteredArticles = filteredArticles.filter(articles => userpreferencesDataList.sports.includes(articles.sport.id));
+        filteredArticles = filteredArticles.filter(article => {
+            if (article.teams && article.teams.length > 0) {
+
+                const hasMatchingTeam = article.teams.some(team => userpreferencesDataList.teams.includes(team.id));
+                return hasMatchingTeam;
+            } else {
+
+                return false;
+            }
+        });
+    }
+    // console.log(filteredArticles);
     return (
         <>
             {filteredArticles.map((article: any) => (

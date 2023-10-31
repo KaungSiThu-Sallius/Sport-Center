@@ -14,7 +14,7 @@ export default function ArticleSubMenu() {
 
     const token = localStorage.getItem("authToken") ?? "";
 
-    console.log(userpreferencesDataList.sports);
+    // console.log(userpreferencesDataList.sports);
     let filteredSports = sportsDataList;
     if (token) {
         filteredSports = sportsDataList.filter(sport => userpreferencesDataList.sports.includes(sport.id));
