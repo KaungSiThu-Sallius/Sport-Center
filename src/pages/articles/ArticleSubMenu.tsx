@@ -11,13 +11,16 @@ export default function ArticleSubMenu() {
 
     const { sportsDataList, isLoading, isError, errorMessage } = sportState;
     const { userpreferencesDataList, isUserPreferenceLoading, isUserPreferenceError, errorUserPreferenceMessage } = userPreferenceState
-
+    const userPreferenceSports = userpreferencesDataList.sports;
     const token = localStorage.getItem("authToken") ?? "";
 
     // console.log(userpreferencesDataList.sports);
     let filteredSports = sportsDataList;
     if (token) {
-        filteredSports = sportsDataList.filter(sport => userpreferencesDataList.sports.includes(sport.id));
+        if (userPreferenceSports && userPreferenceSports.length > 0) {
+            filteredSports = sportsDataList.filter(sport => userPreferenceSports.includes(sport.id));
+        }
+
     }
 
     // console.log(filteredSports);

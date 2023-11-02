@@ -65,18 +65,26 @@ export default function PreferencesForm() {
     }
 
     const handleSportChange = (sport) => {
-        if (selectedSports.includes(sport)) {
-            setSelectedSports(selectedSports.filter((item) => item !== sport));
+        if (!selectedSports || selectedSports.length === 0) {
+            setSelectedSports([sport]); // Add the first sport to the array
         } else {
-            setSelectedSports([...selectedSports, sport]);
+            if (selectedSports.includes(sport)) {
+                setSelectedSports(selectedSports.filter((item) => item !== sport));
+            } else {
+                setSelectedSports([...selectedSports, sport]);
+            }
         }
     };
 
     const handleTeamChange = (team) => {
-        if (selectedTeams.includes(team)) {
-            setSelectedTeams(selectedTeams.filter((item) => item !== team));
+        if (!selectedTeams || selectedTeams.length === 0) {
+            setSelectedTeams([team]); // Add the first team to the array
         } else {
-            setSelectedTeams([...selectedTeams, team]);
+            if (selectedTeams.includes(team)) {
+                setSelectedTeams(selectedTeams.filter((item) => item !== team));
+            } else {
+                setSelectedTeams([...selectedTeams, team]);
+            }
         }
     };
 
@@ -112,6 +120,7 @@ export default function PreferencesForm() {
             // if (!response.ok) {
             //     throw new Error('Failed to save preferences');
             // }
+            console.log(selectedSports);
             patchPreference(preferenceDispatch, selectedSports, selectedTeams);
 
             console.log('Preferences saved successfully');
@@ -160,13 +169,20 @@ export default function PreferencesForm() {
                                         <div className="space-y-2">
                                             {sportsDataList.map((sport) => (
                                                 <label key={sport.id} className="inline-flex items-center">
-                                                    <input
+                                                    {selectedSports && selectedSports.includes(sport.id) ? (
+                                                        <input
+                                                            type="checkbox"
+                                                            className="form-checkbox text-blue-500"
+                                                            value={sport.name}
+                                                            checked={selectedSports.includes(sport.id)}
+                                                            onChange={() => handleSportChange(sport.id)}
+                                                        />
+                                                    ) : <input
                                                         type="checkbox"
                                                         className="form-checkbox text-blue-500"
                                                         value={sport.name}
-                                                        checked={selectedSports.includes(sport.id)}
                                                         onChange={() => handleSportChange(sport.id)}
-                                                    />
+                                                    />}
                                                     <span className="ml-2 mr-4">{sport.name}</span>
                                                 </label>
                                             ))}
@@ -178,13 +194,22 @@ export default function PreferencesForm() {
                                         <div className="space-y-2">
                                             {teamsDataList.map((team) => (
                                                 <label key={team.id} className="inline-flex items-center">
-                                                    <input
+                                                    {selectedTeams && selectedTeams.includes(team.id) ? (
+                                                        <input
+                                                            type="checkbox"
+                                                            className="form-checkbox text-blue-500"
+                                                            value={team.name}
+                                                            checked={selectedTeams.includes(team.id)}
+                                                            onChange={() => handleTeamChange(team.id)}
+                                                        />
+                                                    ) : <input
                                                         type="checkbox"
                                                         className="form-checkbox text-blue-500"
                                                         value={team.name}
-                                                        checked={selectedTeams.includes(team.id)}
+
                                                         onChange={() => handleTeamChange(team.id)}
-                                                    />
+                                                    />}
+
                                                     <span className="ml-2 mr-4">{team.name}</span>
                                                 </label>
                                             ))}

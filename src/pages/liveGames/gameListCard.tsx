@@ -19,10 +19,7 @@ const MatchCard = () => {
 
     // console.log(sportData);
 
-    const sportNames = userPreferenceSports.map(id => {
-        const sport = sportData.find(sport => sport.id === id);
-        return sport ? sport.name : null;
-    });
+
 
 
 
@@ -52,17 +49,24 @@ const MatchCard = () => {
     let filterMatches = detailedMatches;
 
     if (token) {
-        filterMatches = filterMatches.filter(match => {
-            if (match.teams && match.teams.length > 0) {
+        if (userPreferenceSports && userPreferenceSports.length > 0) {
+            const sportNames = userPreferenceSports.map(id => {
+                const sport = sportData.find(sport => sport.id === id);
+                return sport ? sport.name : null;
+            });
+            filterMatches = filterMatches.filter(sport => sportNames.includes(sport.sportName));
+        }
 
-                const hasMatchingTeam = match.teams.some(team => userPreferenceTeams.includes(team.id));
-                return hasMatchingTeam;
-            } else {
-
-                return false;
-            }
-        });
-        filterMatches = filterMatches.filter(sport => sportNames.includes(sport.sportName));
+        if (userPreferenceTeams && userPreferenceTeams.length > 0) {
+            filterMatches = filterMatches.filter(match => {
+                if (match.teams && match.teams.length > 0) {
+                    const hasMatchingTeam = match.teams.some(team => userPreferenceTeams.includes(team.id));
+                    return hasMatchingTeam;
+                } else {
+                    return false;
+                }
+            });
+        }
     }
 
     const refreshMatch = async (matchId) => {
@@ -116,9 +120,7 @@ const MatchCard = () => {
                             {match.name}
                         </h5>
 
-                        <p className="mb-3 font-normal text-gray-700">
-                            {match.location}
-                        </p>
+
 
                         <p className="font-normal text-gray-700">
                             {/* {Object.keys(match.score).map((team, i) => (

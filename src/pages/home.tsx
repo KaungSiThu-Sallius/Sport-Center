@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 import { useUserPreferencesDispatch } from "../context/userPreferences/context";
 import { fetchUserPreferences } from "../context/userPreferences/actions";
 import { useUserPreferencesState } from "../context/userPreferences/context";
+import Favourite from "./favourites";
 
 
 const Home = () => {
@@ -27,13 +28,13 @@ const Home = () => {
             </div>
             <div className="flex">
 
-                <div className="w-10/12 p-4">
+                <div className="w-9/12 p-4">
 
                     <Articles />
                     <Outlet />
                 </div>
-                <div className="w-2/12 p-4">
-                    <Teams />
+                <div className="w-3/12 p-4">
+                    <Favourite />
                 </div>
             </div>
         </>

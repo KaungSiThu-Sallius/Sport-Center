@@ -30,17 +30,20 @@ export default function ArticleLists(props) {
 
 
     if (token) {
-        filteredArticles = filteredArticles.filter(articles => userpreferencesDataList.sports.includes(articles.sport.id));
-        filteredArticles = filteredArticles.filter(article => {
-            if (article.teams && article.teams.length > 0) {
+        if (userpreferencesDataList.sports && userpreferencesDataList.sports.length > 0) {
+            filteredArticles = filteredArticles.filter(article => userpreferencesDataList.sports.includes(article.sport.id));
+        }
 
-                const hasMatchingTeam = article.teams.some(team => userpreferencesDataList.teams.includes(team.id));
-                return hasMatchingTeam;
-            } else {
-
-                return false;
-            }
-        });
+        if (userpreferencesDataList.teams && userpreferencesDataList.teams.length > 0) {
+            filteredArticles = filteredArticles.filter(article => {
+                if (article.teams && article.teams.length > 0) {
+                    const hasMatchingTeam = article.teams.some(team => userpreferencesDataList.teams.includes(team.id));
+                    return hasMatchingTeam;
+                } else {
+                    return false;
+                }
+            });
+        }
     }
     // console.log(filteredArticles);
     return (
