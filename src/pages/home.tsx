@@ -10,12 +10,17 @@ import Favourite from "./favourites";
 
 
 const Home = () => {
+    const token = localStorage.getItem("authToken") ?? "";
     const userPreferenceDispatch = useUserPreferencesDispatch();
     let userPreferenceState: any = useUserPreferencesState();
     const { userpreferencesDataList, isUserPreferenceLoading, isUserPreferenceError, errorUserPreferenceMessage } = userPreferenceState
-    useEffect(() => {
-        fetchUserPreferences(userPreferenceDispatch);
-    }, [userpreferencesDataList]);
+
+    if (token) {
+        useEffect(() => {
+            fetchUserPreferences(userPreferenceDispatch);
+        }, [userpreferencesDataList]);
+    }
+
 
 
     return (
