@@ -48,15 +48,24 @@ export default function FavouriteListArticles() {
 
 
     let sportNamesData = sportsData.sportsDataList
+    let teamNamesData = teamData.teamsDataList
     if (userPreferenceSports && userPreferenceSports.length > 0) {
         const sportNames = userPreferenceSports.map((id) => {
             const sport = sportsData.sportsDataList.find((sport) => sport.id === id);
-            console.log('User Preference Sport ID:', id);
-            console.log('Matched Sport:', sport);
             return sport ? sport.name : null;
         });
 
         sportNamesData = sportNamesData.filter(sport => sportNames.includes(sport.name));
+    }
+
+    if (userPreferenceTeams && userPreferenceTeams.length > 0) {
+        const teamNames = userPreferenceTeams.map((id) => {
+            const team = teamData.teamsDataList.find((team) => team.id === id);
+            return team ? team.name : null;
+        });
+
+        teamNamesData = teamNamesData.filter(team => teamNames.includes(team.name));
+
     }
 
 
@@ -128,7 +137,7 @@ export default function FavouriteListArticles() {
                         leaveTo="opacity-0">
                         <Listbox.Options
                             className="absolute mt-1  w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                            {teamData.teamsDataList.map((team, teamIdx) => (
+                            {teamNamesData.map((team, teamIdx) => (
                                 <Listbox.Option key={teamIdx} className={({ active }) =>
                                     `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
                                     }`
@@ -162,7 +171,7 @@ export default function FavouriteListArticles() {
                         <div className="p-4">
                             <h2 className="text-md font-semibold">{article.title}</h2>
                             <p className="text-sm">{article.summary}</p>
-                            <p className="text-sm">{article.sport.name}</p>
+
                             <Link to={`/articles/${article.id}`}>
                                 <button
                                     id="taskDetailBtn"
